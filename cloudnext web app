@@ -1,0 +1,53 @@
+The project i made uses Iac(Infrastructure As Code) and sets up Nextcloud web app in just one click by getting all the infrastructure ready in just one go.
+Port Address Translation (PAT) for outside accessibility.
+Port Address Translation (PAT) is an extension of Network Address Translation (NAT) that permits multiple devices on a LAN to be mapped to a single
+public IP address to conserve IP addresses
+
+ports:
+  - 4444:80
+  
+  I am using permanent volume for database and web -page 
+  
+  mysql_storage:/var/lib/mysql
+  nextcloud_storage:/var/www/html
+  
+ Used Docker-compose which enables "Infrastructure as code" to start and stop the infrastructure easily and quickly.
+ 
+ 
+version: "3"
+services:
+  database:
+    image: mysql:5.6
+    volumes:
+      - mysql_storage:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_USER: tanweer
+      MYSQL_PASSWORD: tanweer
+      MYSQL_DATABASE: mydatabase
+
+  nextcloud:
+    image: nextcloud:latest
+    restart: always
+    depends_on:
+      - database
+    ports:
+      - 4444:80
+    volumes:
+      - nextcloud_storage:/var/www/html
+    
+volumes:
+  mysql_storage:
+
+  nextcloud_storage:
+
+
+To start the complete web app use command 
+
+ docker-compose up -d
+ 
+ To stop the web app use command 
+ docker-compose stop
+ 
+ 
