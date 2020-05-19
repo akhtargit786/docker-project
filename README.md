@@ -1,12 +1,12 @@
 # docker-project
 In this project i used Infrastructure as a code (IAC) and create a next cloud web app 
 
-Technology used 
+Technology used :  
 I am using the docker host on AWS EC2 instance 
 I am creating the ec2 instance by using ansible-playbook
 Playbooks are the basis for a really simple configuration management and multi-machine deployment system, unlike any that already exist, and one that is very well suited to deploying complex applications.
 
-creating a ansible playbook with command 
+Creating a ansible playbook with command 
 vim awsinstance.yml
 
 - hosts: localhost
